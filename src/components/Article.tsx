@@ -33,7 +33,7 @@ const Article: FC<ArticleProps> = ({ art, key }) => {
       })
       .catch(() => {
         router.push('/user/login')
-        toast('Make sure to login first!')
+        toast('Make sure to be logged in first!')
       })
   }
 
@@ -48,7 +48,10 @@ const Article: FC<ArticleProps> = ({ art, key }) => {
           setMsg('')
         }
       })
-      .catch(() => router.push('/user/signup'))
+      .catch(() => {
+        router.push('/user/signup')
+        toast('Make sure to be logged in first!')
+      })
   }
 
   const desc =
