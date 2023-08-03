@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 interface layoutProps {
   children: React.ReactNode
@@ -7,7 +9,11 @@ interface layoutProps {
 
 const layout: FC<layoutProps> = ({ children }) => {
   return (
-    <main className="w-full min-h-screen grid grid-cols-2 grid-rows-1 overflow-hidden">
+    <main className="relative w-full min-h-screen grid grid-cols-2 grid-rows-1 overflow-hidden">
+      <Link href={'/'} className='z-20 fixed top-4 left-8 flex justify-center items-center gap-2 text-sm'>
+        <AiOutlineArrowLeft />
+        Back to home
+      </Link>
       <article className="z-10 flex justify-center items-start pt-32 gap-12 bg-gray-100 border-r-4 border-gray-800">
         {children}
         <div className="relative">
