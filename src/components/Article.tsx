@@ -79,7 +79,7 @@ const Article: FC<ArticleProps> = ({ art, key }) => {
       </Link>
       <div className="w-full py-2 px-4 flex justify-between items-center bg-gray-200 rounded-[2px_2px_0_0]">
         <p className='text-xs'>
-            by {art.author} | {art.publishedAt.slice(0, 10)}
+            {art.author && `by ${art.author} | `}{art.publishedAt.slice(0, 10)}
         </p>
         <div className="flex justify-center items-center gap-2">
           <p>{msg}</p>
