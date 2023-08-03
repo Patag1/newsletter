@@ -37,7 +37,7 @@ const page: FC<pageProps> = ({}) => {
       <p className="text-sm w-full text-center text-gray-500">
         Don&apos;t have an account?{' '}
         <Link
-          href={'/user/register'}
+          href={'/user/signup'}
           className="font-bold hover:underline hover:text-gray-800 underline-offset-2 decoration-2"
         >
           Sing up
