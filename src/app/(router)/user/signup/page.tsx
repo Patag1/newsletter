@@ -41,7 +41,7 @@ const page: FC<pageProps> = ({}) => {
         type="submit"
         className="w-full mt-4 py-2 border-2 border-gray-800 rounded-md drop-shadow-btn bg-green-400 font-extrabold hover:brightness-105 active:translate-x-1 active:translate-y-1 active:drop-shadow-none transition-all"
       >
-        Register
+        Sign up
       </button>
       <p className="text-sm w-full text-center text-gray-500">
         Already have an account?{' '}
@@ -49,7 +49,7 @@ const page: FC<pageProps> = ({}) => {
           href={'/user/login'}
           className="font-bold hover:underline hover:text-gray-800 underline-offset-2 decoration-2"
         >
-          Login
+          Log in
         </Link>{' '}
         instead
       </p>

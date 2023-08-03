@@ -48,7 +48,7 @@ const Article: FC<ArticleProps> = ({ art, key }) => {
           setMsg('')
         }
       })
-      .catch(() => router.push('/user/login'))
+      .catch(() => router.push('/user/signup'))
   }
 
   const desc =

@@ -40,7 +40,7 @@ const page: FC<pageProps> = ({}) => {
           href={'/user/register'}
           className="font-bold hover:underline hover:text-gray-800 underline-offset-2 decoration-2"
         >
-          Register
+          Sing up
         </Link>{' '}
         instead
       </p>
