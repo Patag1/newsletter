@@ -10,7 +10,10 @@ interface layoutProps {
 const layout: FC<layoutProps> = ({ children }) => {
   return (
     <main className="relative w-full min-h-screen grid grid-cols-2 grid-rows-1 overflow-hidden">
-      <Link href={'/'} className='z-20 fixed top-4 left-8 flex justify-center items-center gap-2 text-sm'>
+      <Link
+        href={'/'}
+        className="z-20 fixed top-4 left-8 flex justify-center items-center gap-2 text-sm"
+      >
         <AiOutlineArrowLeft />
         Back to home
       </Link>

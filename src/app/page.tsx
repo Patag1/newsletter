@@ -6,7 +6,7 @@ import { BiBadge } from 'react-icons/bi'
 export default function Home() {
   return (
     <>
-      <main className="my-8 mx-auto w-fit p-16 pt-8 flex justify-center items-center flex-col gap-6 border-4 border-gray-800 rounded-[0.5rem_0.125rem_0.125rem_0.125rem] drop-shadow-sm bg-gray-100">
+      <main className="md:my-8 md:mx-auto md:w-fit md:px-16 md:pt-8 p-8 pb-32 flex justify-center items-center flex-col gap-6 md:border-4 border-gray-800 md:rounded-[0.5rem_0.125rem_0.125rem_0.125rem] drop-shadow-sm bg-gray-100">
         <article className="w-full flex justify-between items-center">
           <div className='flex justify-center items-center gap-1'>
             <BiBadge className="text-4xl" />

@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import prisma from '@/lib/prismadb'
 
 export async function GET() {
   const currentUser = await getCurrentUser()
 
   if (!currentUser) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ status: 401 })
   }
 
-  return NextResponse.json({ currentUser }, { status: 200 })
+  return NextResponse.json(currentUser)
 }
 
 export async function getSession() {
