@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Toaster } from 'sonner'
 import UserMenu from '@/components/UserMenu'
+import { SkeletonTheme } from 'react-loading-skeleton'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,10 +18,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='bg-gray-300 text-gray-800'>
+    <html lang="en" className="bg-gray-300 text-gray-800">
       <body className={`${inter.className} relative`}>
-        {children}
-        <Toaster position='bottom-right' />
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          {children}
+        </SkeletonTheme>
+        <Toaster position="bottom-right" />
         <UserMenu />
       </body>
     </html>

@@ -26,7 +26,11 @@ export const newsSlice = create<newsSliceProps>((set, _get) => ({
   res: 0,
   saved: null,
   getCurrentUser: async () => {
-    await axios.get('/api/user').then((res) => set({ user: res.data }))
+    await axios.get('/api/user').then((res) => {
+      if (res.data.status !== 401) {
+        set({ user: res.data })
+      }
+    })
   },
   langChange: (lang) => set({ lang }),
   getNews: async () => {
@@ -37,7 +41,7 @@ export const newsSlice = create<newsSliceProps>((set, _get) => ({
       .then((res) => {
         set({ news: res.data.articles, res: res.data.totalResults })
       })
-      .catch((error) => {
+      .catch((_error) => {
         toast.error('Error fetching news!')
       })
   },

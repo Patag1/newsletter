@@ -1,16 +1,19 @@
 'use client'
 
-import axios from 'axios'
+import { FC, useState } from 'react'
+import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { FC, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { newsSlice } from '@/store/newsSlice'
 
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
   const [loading, setLoading] = useState(false)
+
+  const { getCurrentUser } = newsSlice()
 
   const {
     register,
@@ -26,22 +29,22 @@ const Page: FC<pageProps> = ({}) => {
 
     setLoading(true)
 
-    return await axios
-      .post('api/register', data)
-      .then(() => {
-        toast.success('Good news! Registered successfully!')
+    await signIn('credentials', {
+      ...data,
+      redirect: false,
+    })
+      .then((callback) => {
+        if (callback?.ok) {
+          toast.success('Logged in!')
+          getCurrentUser()
+          router.push('/products')
+        }
+
+        if (callback?.error) {
+          toast.error(callback.error)
+        }
       })
-      .catch(() => {
-        toast.error('Oh no! Got bad news for you')
-      })
-      .finally(() => {
-        setLoading(false)
-        reset({
-          email: '',
-          password: '',
-        })
-        router.push('/')
-      })
+      .catch(() => toast.error('Oh no, bad news! Try again later'))
   }
 
   return (
@@ -50,7 +53,9 @@ const Page: FC<pageProps> = ({}) => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="mb-4">
-        <h1 className="text-6xl font-extrabold">Hello <span className='text-rose-400'>x2</span>!</h1>
+        <h1 className="text-6xl font-extrabold">
+          Hello <span className="text-rose-400">x2</span>!
+        </h1>
         <p className="text-sm">Have a cup of coffee!</p>
       </div>
       <div className="relative flex justify-between items-center w-full gap-2">

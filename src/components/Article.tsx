@@ -1,12 +1,12 @@
 import { FC, useState } from 'react'
 import { ApiReq } from '@/types/zod'
-import Link from 'next/link'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { BiMinus, BiPlus, BiSolidShareAlt } from 'react-icons/bi'
-import ArticleBtn from './ArticleBtn'
+import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import ArticleBtn from './ArticleBtn'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { BiMinus, BiPlus, BiSolidShareAlt } from 'react-icons/bi'
 
 interface ArticleProps {
   art: ApiReq
@@ -31,7 +31,7 @@ const Article: FC<ArticleProps> = ({ art }) => {
         }
       })
       .catch(() => {
-        router.push('/user/login')
+        router.push('/login')
         toast('Make sure to be logged in first!')
       })
   }
@@ -48,10 +48,12 @@ const Article: FC<ArticleProps> = ({ art }) => {
         }
       })
       .catch(() => {
-        router.push('/user/signup')
+        router.push('/login')
         toast('Make sure to be logged in first!')
       })
   }
+
+  const handleShare = () => {}
 
   const desc =
     (art.description &&
@@ -67,20 +69,25 @@ const Article: FC<ArticleProps> = ({ art }) => {
         className="w-full h-fit md:pb-4 pt-6 max-w-prose flex md:flex-row flex-col md:justify-between md:items-start gap-4"
       >
         <div>
-          <h4 className="font-extrabold">{art.title}</h4>
+          <h4 className="font-extrabold hover:underline">{art.title}</h4>
           <p>{desc}</p>
         </div>
         {art.urlToImage && (
           <img
             src={art.urlToImage}
             alt={art.title}
-            className="md:w-64 w-full aspect-video rounded-sm"
+            className="md:w-64 w-full aspect-video rounded-sm hover:scale-105 transition-all ease-in-out duration-200"
           />
         )}
       </Link>
       <div className="w-full py-2 px-4 flex justify-between items-center bg-gray-200 rounded-[2px_2px_0_0] border-b-2 border-gray-800 border-dotted">
-        <p className="text-xs">
+        <p className="text-xs hidden md:block">
           {art.author && `by ${art.author} | `}
+          {art.publishedAt.slice(0, 10)}
+        </p>
+        <p className="text-xs block md:hidden">
+          {art.author && `by ${art.author}`}
+          <br />
           {art.publishedAt.slice(0, 10)}
         </p>
         <div className="flex justify-center items-center gap-2">
@@ -98,7 +105,7 @@ const Article: FC<ArticleProps> = ({ art }) => {
             iconInactive={BiPlus}
           />
           <ArticleBtn
-            onClick={() => {}}
+            onClick={handleShare}
             iconBool={true}
             iconActive={BiSolidShareAlt}
             iconInactive={BiSolidShareAlt}

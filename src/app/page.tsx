@@ -2,15 +2,16 @@ import DateTime from '@/components/DateTime'
 import NewsArticles from '@/components/NewsArticles'
 import TopBtn from '@/components/TopBtn'
 import { BiBadge } from 'react-icons/bi'
+import { ImSpinner8 } from 'react-icons/im'
 
 export default function Home() {
   return (
     <>
-      <main className="md:my-8 md:mx-auto md:w-fit md:px-16 md:pt-8 p-8 pb-32 flex justify-center items-center flex-col gap-6 md:border-4 border-gray-800 md:rounded-[0.5rem_0.125rem_0.125rem_0.125rem] drop-shadow-sm bg-gray-100">
+      <main className="md:my-8 md:mx-auto md:w-fit md:px-16 md:pt-8 p-8 pb-0 flex justify-center items-center flex-col gap-6 md:border-4 border-gray-800 md:rounded-[0.5rem_0.125rem_0.125rem_0.125rem] drop-shadow-sm bg-gray-100">
         <article className="w-full flex justify-between items-center">
-          <div className='flex justify-center items-center gap-1'>
+          <div className="flex justify-center items-center gap-1">
             <BiBadge className="text-4xl" />
-            <p className='text-2xl font-extrabold'>Tech-I</p>
+            <p className="text-2xl font-extrabold">Tech-I</p>
           </div>
           <DateTime />
         </article>
@@ -33,8 +34,9 @@ export default function Home() {
           officia quod, eius ducimus consequuntur aliquam accusamus consequatur,
           sequi ipsa voluptatum ea.
         </p>
-        <div className='border-b-4 border-gray-800 w-full'></div>
+        <div className="border-b-4 border-gray-800 w-full"></div>
         <NewsArticles />
+        <ImSpinner8 className={'my-16 text-4xl animate-spin'} />
       </main>
       <TopBtn />
     </>

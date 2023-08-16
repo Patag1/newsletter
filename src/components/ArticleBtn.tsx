@@ -17,7 +17,7 @@ const ArticleBtn: FC<ArticleBtnProps> = ({
   return (
     <button
       onClick={onClick}
-      className="p-1 bg-gray-100 border-2 border-gray-800 drop-shadow-btn rounded-md active:translate-x-1 active:translate-y-1 active:drop-shadow-none transition-all ease-in-out"
+      className="p-1 md:text-base text-xl bg-gray-100 border-2 border-gray-800 drop-shadow-btn rounded-md active:translate-x-1 active:translate-y-1 active:drop-shadow-none transition-all ease-in-out"
     >
       {iconBool ? <Icon1 /> : <Icon2 />}
     </button>

@@ -3,13 +3,14 @@
 import { useEffect } from 'react'
 import { newsSlice } from '@/store/newsSlice'
 import Article from './Article'
+import SkeletonArticles from './SkeletonArticles'
 
 const NewsArticles = () => {
   const { news, res, getNews } = newsSlice()
 
   useEffect(() => {
     getNews()
-  }, [])
+  }, [getNews])
 
   return (
     <div className="w-full flex flex-col">
@@ -20,7 +21,11 @@ const NewsArticles = () => {
         </span>
       </div>
       <div className="flex flex-col gap-8">
-        {news && news.map((art, i) => <Article art={art} key={i} />)}
+        {news ? (
+          news.map((art, i) => <Article art={art} key={i} />)
+        ) : (
+          <SkeletonArticles cards={8} />
+        )}
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ interface layoutProps {
 
 const layout: FC<layoutProps> = ({ children }) => {
   return (
-    <main className="relative w-full min-h-screen grid grid-cols-2 grid-rows-1 overflow-hidden">
+    <main className="relative w-full min-h-screen grid md:grid-cols-2 grid-cols-1 grid-rows-1 overflow-hidden">
       <Link
         href={'/'}
         className="z-20 fixed top-4 left-8 flex justify-center items-center gap-2 text-sm"
@@ -17,7 +17,7 @@ const layout: FC<layoutProps> = ({ children }) => {
         <AiOutlineArrowLeft />
         Back to home
       </Link>
-      <article className="z-10 flex justify-center items-start pt-32 gap-12 bg-gray-100 border-r-4 border-gray-800">
+      <article className="z-10 flex md:flex-row flex-col justify-center md:items-start items-center pt-32 gap-12 bg-gray-100 border-r-4 border-gray-800">
         {children}
         <div className="relative">
           <Image
@@ -32,7 +32,7 @@ const layout: FC<layoutProps> = ({ children }) => {
           <div className="absolute bottom-12 -right-4 w-3 aspect-square bg-[rgba(99,31,2,0.5)] rounded-[90%_100%_60%_100%]"></div>
         </div>
       </article>
-      <aside className="p-12">
+      <aside className="p-12 md:block hidden">
         <h1 className="font-extrabold text-[15vh] leading-none">
           <span className="underline underline-offset-8 decoration-rose-400">
             Explore
