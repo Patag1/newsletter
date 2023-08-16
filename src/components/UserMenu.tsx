@@ -49,7 +49,7 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
 
     setLoading(true)
 
-    await signOut({ callbackUrl: `${window.location.origin}/login` })
+    await signOut()
       .then(() => {
         console.log('a')
         setLoading(false)
@@ -66,7 +66,7 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
     getCurrentUser()
   }, [getCurrentUser])
 
-  console.log(user)
+
 
   return (
     <>
