@@ -17,8 +17,8 @@ const userLinks = [
   },
   {
     label: 'log out',
-    url: '/'
-  }
+    url: '/',
+  },
 ]
 
 const casualLinks = [
@@ -66,7 +66,7 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
     getCurrentUser()
   }, [getCurrentUser])
 
-
+  console.log(user)
 
   return (
     <>
@@ -89,7 +89,12 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
             ? userLinks.map((l, i) =>
                 l.label === 'log out' ? (
                   <li key={i}>
-                    <button onClick={handleLogOut}>log out</button>
+                    <button
+                      onClick={handleLogOut}
+                      className="hover:underline underline-offset-2 decoration-2"
+                    >
+                      log out
+                    </button>
                   </li>
                 ) : (
                   <li key={i}>
