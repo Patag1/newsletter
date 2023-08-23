@@ -2,38 +2,42 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prismadb'
 import { getCurrentUser } from '../user/route'
 import axios from 'axios'
+import { url } from '../news/route'
 import { ApiReq } from '@/types/zod'
 
-const url = `https://newsapi.org/v2/top-headlines?category=technology`
-const apiKey = '9aff6f6f856246c6b693fee8ce809239' // ARREGLAR
-
 export async function PUT(req: NextRequest) {
-  const saved: { saved: boolean; id: string } = await req.json()
+  const { saved, art } = await req.json()
 
   const user = await getCurrentUser()
+
+  console.log(user)
 
   if (!user) {
     return NextResponse.json({ status: 401 })
   }
-
+  
   try {
+    const savedArts = user.saved
+    
     const article = await axios
-      .get(url, { params: { apiKey } })
-      .then((res) => res.data)
-      .then((data) => data.filter)
+      .get(url)
+      .then((res) => res.data.articles)
+      .then((data) => data.filter((article: ApiReq) => article.title === art.title))
 
-    let savedArts = []
+    let updatedArts = []
 
     if (saved) {
-      savedArts = [...user.saved, article]
+      updatedArts = [...savedArts, article]
     } else {
-      savedArts = (user.saved || []).filter((savedArt: ApiReq) => savedArt?.title !== article.title)
+      updatedArts = savedArts.filter(
+        (savedArt) => JSON.stringify(savedArt) !== JSON.stringify(article)
+      )
     }
 
     await prisma.user.update({
       where: { id: user.id },
       data: {
-        saved: savedArts,
+        saved: updatedArts,
       },
     })
 

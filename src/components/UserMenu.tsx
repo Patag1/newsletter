@@ -1,14 +1,16 @@
 'use client'
 
-import { FC, useEffect, useState } from 'react'
-import { newsSlice } from '@/store/newsSlice'
+import { FC, useState } from 'react'
 import Link from 'next/link'
 import { FiUser } from 'react-icons/fi'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { dbUser } from '@/types'
 
-interface UserMenuProps {}
+interface UserMenuProps {
+  user: dbUser | { status: number } | null
+}
 
 const userLinks = [
   {
@@ -32,11 +34,9 @@ const casualLinks = [
   },
 ]
 
-const UserMenu: FC<UserMenuProps> = ({}) => {
+const UserMenu: FC<UserMenuProps> = ({ user }) => {
   const [active, setActive] = useState(false)
   const [loading, setLoading] = useState(false)
-
-  const { user, getCurrentUser } = newsSlice()
 
   const router = useRouter()
 
@@ -62,12 +62,6 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
       })
   }
 
-  useEffect(() => {
-    getCurrentUser()
-  }, [getCurrentUser])
-
-  console.log(user)
-
   return (
     <>
       <div
@@ -85,7 +79,8 @@ const UserMenu: FC<UserMenuProps> = ({}) => {
         } duration-300`}
       >
         <ul className="flex flex-col gap-4 text-xl font-extrabold">
-          {user
+          {/* @ts-ignore */}
+          {user && user.status === 'ok'
             ? userLinks.map((l, i) =>
                 l.label === 'log out' ? (
                   <li key={i}>

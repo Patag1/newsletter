@@ -6,20 +6,16 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { newsSlice } from '@/store/newsSlice'
 
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
   const [loading, setLoading] = useState(false)
 
-  const { getCurrentUser } = newsSlice()
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm()
 
   const router = useRouter()
@@ -36,8 +32,7 @@ const Page: FC<pageProps> = ({}) => {
       .then((callback) => {
         if (callback?.ok) {
           toast.success('Logged in!')
-          getCurrentUser()
-          router.push('/products')
+          router.push('/')
         }
 
         if (callback?.error) {

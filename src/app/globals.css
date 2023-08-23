@@ -5,3 +5,13 @@
 * {
   scroll-behavior: smooth;
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: #F3F4F6;
+  background: #F43F5E;
+}
+
+::selection {
+  color: #F3F4F6;
+  background: #F43F5E;
+}

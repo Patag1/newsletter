@@ -21,7 +21,7 @@ const Article: FC<ArticleProps> = ({ art }) => {
 
   const handleLike = async () => {
     await axios
-      .put('/like', { liked, id: art.title })
+      .put('/api/like', { liked, art })
       .then(() => {
         setLiked(!liked)
         if (!liked) {
@@ -38,7 +38,7 @@ const Article: FC<ArticleProps> = ({ art }) => {
 
   const handleSave = async () => {
     await axios
-      .put('/save', { saved, id: art.title })
+      .put('/api/save', { saved, art })
       .then(() => {
         setSaved(!saved)
         if (!saved) {
