@@ -7,13 +7,11 @@ import UserMenu from '@/components/UserMenu'
 import axios from 'axios'
 
 export default async function Home() {
-  // const user = await axios
-  //   .get('http://localhost:3000/api/user')
-  //   .then((res) => res.data)
+  const user = await axios
+    .get('http://localhost:3000/api/user')
+    .then((res) => res.data)
 
-  // console.log(user.status)
-
-  const user = {status: 401}
+  console.log(user)
 
   return (
     <>
